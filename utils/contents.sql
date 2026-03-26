@@ -1,0 +1,13 @@
+CREATE TABLE IF NOT EXISTS contents (
+  id CHAR(36) NOT NULL,
+  title VARCHAR(255) NOT NULL,
+  content_type ENUM('movie', 'series') NOT NULL,
+  synopsis TEXT NULL,
+  poster_url VARCHAR(500) NULL,
+  trailer_url VARCHAR(500) NULL,
+  release_year YEAR NULL,
+  publisher_id CHAR(36) NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (id)
+);
