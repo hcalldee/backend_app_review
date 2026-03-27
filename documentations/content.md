@@ -13,9 +13,12 @@ Dokumentasi ini berisi endpoint untuk modul `content` yang dipakai untuk mengelo
 - [Ringkasan Endpoint](#ringkasan-endpoint)
 - [Ambil Semua Content](#ambil-semua-content)
 - [Ambil Content Berdasarkan Id](#ambil-content-berdasarkan-id)
+- [Ambil Cast per Content](#ambil-cast-per-content)
+- [Tambah Cast ke Content](#tambah-cast-ke-content)
 - [Buat Content](#buat-content)
 - [Ubah Content](#ubah-content)
 - [Hapus Content](#hapus-content)
+- [Hapus Cast dari Content](#hapus-cast-dari-content)
 
 ## Ringkasan Endpoint
 
@@ -23,9 +26,12 @@ Dokumentasi ini berisi endpoint untuk modul `content` yang dipakai untuk mengelo
 |---|---|---|
 | `GET` | `/api/contents` | Mengambil semua data content |
 | `GET` | `/api/contents/:id` | Mengambil detail content berdasarkan UUID |
+| `GET` | `/api/contents/:contentId/casts` | Mengambil daftar cast untuk content |
+| `POST` | `/api/contents/:contentId/casts` | Menambahkan cast ke content |
 | `POST` | `/api/contents` | Menambahkan data content baru |
 | `PUT` | `/api/contents/:id` | Mengubah data content berdasarkan UUID |
 | `DELETE` | `/api/contents/:id` | Menghapus data content berdasarkan UUID |
+| `DELETE` | `/api/contents/:contentId/casts/:castId` | Menghapus cast dari content |
 
 ## Ambil Semua Content
 
@@ -87,6 +93,85 @@ Dokumentasi ini berisi endpoint untuk modul `content` yang dipakai untuk mengelo
   }
 
   getContentById("uuid-content-di-sini");
+</script>
+```
+
+## Ambil Cast per Content
+
+<span style="display:inline-block;padding:4px 10px;border-radius:999px;background:#dcfce7;color:#166534;font-weight:600;">GET</span>
+
+| Item | Nilai |
+|---|---|
+| Endpoint | `/api/contents/:contentId/casts` |
+| Deskripsi | Mengambil daftar cast untuk satu content |
+| Parameter | `contentId` |
+
+### Contoh AJAX jQuery
+
+```html
+<script>
+  function getCastsByContentId(contentId) {
+    $.ajax({
+      url: "http://localhost:5000/api/contents/" + contentId + "/casts",
+      method: "GET",
+      success: function (response) {
+        console.log("Daftar cast content:", response);
+      },
+      error: function (xhr, status, error) {
+        console.error("Gagal mengambil cast content:", error);
+      }
+    });
+  }
+
+  getCastsByContentId("uuid-content-di-sini");
+</script>
+```
+
+## Tambah Cast ke Content
+
+<span style="display:inline-block;padding:4px 10px;border-radius:999px;background:#dbeafe;color:#1d4ed8;font-weight:600;">POST</span>
+
+| Item | Nilai |
+|---|---|
+| Endpoint | `/api/contents/:contentId/casts` |
+| Deskripsi | Menambahkan cast ke satu content |
+| Parameter | `contentId` |
+| Content-Type | `application/json` |
+
+### Body Request
+
+```json
+{
+  "castId": "uuid-cast-di-sini",
+  "roleName": "Hero (opsional)"
+}
+```
+
+### Contoh AJAX jQuery
+
+```html
+<script>
+  function addCastToContent(contentId) {
+    const payload = {
+      castId: "uuid-cast-di-sini",
+      roleName: "Hero"
+    };
+
+    $.ajax({
+      url: "http://localhost:5000/api/contents/" + contentId + "/casts",
+      method: "POST",
+      contentType: "application/json",
+      data: JSON.stringify(payload),
+      success: function (response) {
+        console.log("Berhasil menambah cast ke content:", response);
+      },
+      error: function (xhr, status, error) {
+        console.error("Gagal menambah cast ke content:", error);
+      }
+    });
+  }
+
+  addCastToContent("uuid-content-di-sini");
 </script>
 ```
 
@@ -233,5 +318,36 @@ Dokumentasi ini berisi endpoint untuk modul `content` yang dipakai untuk mengelo
   }
 
   deleteContent("uuid-content-di-sini");
+</script>
+```
+
+## Hapus Cast dari Content
+
+<span style="display:inline-block;padding:4px 10px;border-radius:999px;background:#fee2e2;color:#b91c1c;font-weight:600;">DELETE</span>
+
+| Item | Nilai |
+|---|---|
+| Endpoint | `/api/contents/:contentId/casts/:castId` |
+| Deskripsi | Menghapus cast dari satu content |
+| Parameter | `contentId`, `castId` |
+
+### Contoh AJAX jQuery
+
+```html
+<script>
+  function removeCastFromContent(contentId, castId) {
+    $.ajax({
+      url: "http://localhost:5000/api/contents/" + contentId + "/casts/" + castId,
+      method: "DELETE",
+      success: function (response) {
+        console.log("Berhasil menghapus cast dari content:", response);
+      },
+      error: function (xhr, status, error) {
+        console.error("Gagal menghapus cast dari content:", error);
+      }
+    });
+  }
+
+  removeCastFromContent("uuid-content-di-sini", "uuid-cast-di-sini");
 </script>
 ```
