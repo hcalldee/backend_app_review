@@ -11,7 +11,6 @@ Repositori ini berisi backend untuk aplikasi review film dan series. Dokumentasi
 
 - [Ringkasan Dokumentasi](#ringkasan-dokumentasi)
 - [Modul yang Tersedia](#modul-yang-tersedia)
-- [Tautan Dokumentasi](#tautan-dokumentasi)
 
 ## Ringkasan Dokumentasi
 
@@ -28,5 +27,5 @@ Repositori ini berisi backend untuk aplikasi review film dan series. Dokumentasi
 |---|---|---|
 | Content | Siap | [Buka Dokumentasi](./documentations/content.md) |
 | Publisher | Siap | [Buka Dokumentasi](./documentations/publisher.md) |
-| Cast | Menyusul | Belum tersedia |
-| Review | Menyusul | Belum tersedia |
+| Cast | Siap | [Buka Dokumentasi](./documentations/cast.md) |
+| Review | Siap | [Buka Dokumentasi](./documentations/review.md) |

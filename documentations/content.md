@@ -1,5 +1,7 @@
 # Dokumentasi API Content
 
+[Kembali ke README](../README.md)
+
 ![Modul](https://img.shields.io/badge/Modul-Content-0ea5e9)
 ![Status](https://img.shields.io/badge/Status-Aktif-22c55e)
 ![Format](https://img.shields.io/badge/Response-JSON-f59e0b)
